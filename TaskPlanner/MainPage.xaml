@@ -1,0 +1,43 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskPlanner.MainPage">
+
+    <StackLayout Padding="10">
+        <!-- Поле для ввода названия задачи -->
+        <Entry x:Name="TaskNameEntry" Placeholder="Task Name" />
+
+        <!-- Поле для описания задачи -->
+        <Editor x:Name="TaskDescriptionEditor" Placeholder="Task Description" HeightRequest="100" />
+
+        <!-- Выпадающий список для приоритета -->
+        <Picker x:Name="PriorityPicker" Title="Select Priority">
+            <Picker.Items>
+                <x:String>Low</x:String>
+                <x:String>Medium</x:String>
+                <x:String>High</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <!-- Выбор даты выполнения -->
+        <DatePicker x:Name="DueDatePicker" />
+
+        <!-- Кнопка для добавления задачи -->
+        <Button Text="Add Task" Clicked="OnAddTaskClicked" />
+
+        <!-- Список задач -->
+        <ListView x:Name="TaskListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Padding="10">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Description}" FontSize="Small" />
+                            <Label Text="{Binding Priority}" FontSize="Small" />
+                            <Label Text="{Binding DueDate, StringFormat='Due: {0:MM/dd/yyyy}'}" FontSize="Small" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
